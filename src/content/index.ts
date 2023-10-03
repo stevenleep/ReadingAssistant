@@ -2,31 +2,47 @@ import rangy from "rangy";
 import "rangy/lib/rangy-classapplier";
 import "rangy/lib/rangy-highlighter";
 
+import * as presetClassAppliers from "./perset-classappliers";
+import { registerClassAppliers, composeHighlighterName } from "./register-classappliers";
+
+/**
+ * Initialize rangy
+ */
 rangy.init();
+
 const highlighter = rangy.createHighlighter();
 
-const className = "highlightx";
+/**
+ * Register class appliers
+ */
+registerClassAppliers(rangy, highlighter, presetClassAppliers);
 
-const classApplier = rangy.createClassApplier(className, {
-    ignoreWhiteSpace: true,
-    tagNames: ["mark"],
-    elementTagName: "mark",
-    elementProperties: {
-        style: {
-            backgroundColor: "red",
-        },
-    },
+/**
+ * 监听鼠标按下事件
+ */
+document.addEventListener("mousedown", function () {
 });
 
-highlighter.addClassApplier(classApplier);
-//
-// window.addEventListener("mouseup", mark);
-//
-// function mark() {
-//     console.log("mouseup");
-//     const selection = rangy.getSelection();
-//     console.log("selection", selection);
-//     highlighter.highlightSelection(className);
-// }
+/**
+ * 监听鼠标抬起事件
+ */
+document.addEventListener("mouseup", mark);
+
+function mark(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const tagName = target.tagName.toLowerCase();
+    if(tagName === "input" || tagName === "textarea" || tagName === "select" || tagName === "option") {
+      return;
+    }
+
+  // 如果选中的是可编辑元素，则不进行标记
+    if (target.isContentEditable) {
+      return
+    }
+
+    const selection = rangy.getSelection();
+    console.log("selection", selection);
+    highlighter.highlightSelection(composeHighlighterName("celadon"));
+}
 
 export {}
