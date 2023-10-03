@@ -1,0 +1,11 @@
+.bookmarks {
+    font-size: 12px;
+    line-height: 26px;
+    /*list-style: none;*/
+}
+.bookmark-item {
+    cursor: pointer;
+}
+.bookmark-item:not(.bookmark-item:last-child) {
+    border-bottom: 1px solid #eee;
+}
