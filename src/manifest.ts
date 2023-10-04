@@ -25,6 +25,7 @@ export default defineManifest({
     {
       matches: ['http://*/*', 'https://*/*'],
       js: ['src/content/index.ts'],
+      css: ['content.css'],
       run_at: 'document_end',
     },
   ],

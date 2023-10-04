@@ -1,48 +1,70 @@
 import rangy from "rangy";
-import "rangy/lib/rangy-classapplier";
-import "rangy/lib/rangy-highlighter";
+import Marker from "./Marker";
+import {
+  createWidgetTools,
+  getWidgetToolsPanel,
+  mountWidgetTools,
+  showWidgetTools,
+  hideWidgetToolsListener,
+  getWidgetToolsPosition, isEditableElement, containsWidgetTools
+} from "./dom";
+import { getMousePosition } from "./action";
+import { getApplierNameRandom } from "./appliers/util";
 
-import * as presetClassAppliers from "./perset-classappliers";
-import { registerClassAppliers, composeHighlighterName } from "./register-classappliers";
+const marker = new Marker();
 
-/**
- * Initialize rangy
- */
-rangy.init();
+mountWidgetTools(createWidgetTools({
+  onClick: function (event: MouseEvent, widgetToolsPanel: HTMLDivElement) {
+    const oldRange = marker.range;
 
-const highlighter = rangy.createHighlighter();
-
-/**
- * Register class appliers
- */
-registerClassAppliers(rangy, highlighter, presetClassAppliers);
-
-/**
- * 监听鼠标按下事件
- */
-document.addEventListener("mousedown", function () {
-});
-
-/**
- * 监听鼠标抬起事件
- */
-document.addEventListener("mouseup", mark);
-
-function mark(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    const tagName = target.tagName.toLowerCase();
-    if(tagName === "input" || tagName === "textarea" || tagName === "select" || tagName === "option") {
+    if(!oldRange) {
+      console.warn("range is not found");
       return;
     }
 
-  // 如果选中的是可编辑元素，则不进行标记
-    if (target.isContentEditable) {
-      return
+    const selection = rangy.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(oldRange);
+    marker.highlighter.highlightSelection(getApplierNameRandom());
+  },
+}));
+
+marker.initialize();
+
+document.addEventListener("mouseup", mark, false);
+function mark(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    /**
+     * 如果是widgetToolsPanel 或可编辑的元素，不做处理
+     */
+    if(containsWidgetTools(target) || isEditableElement(target)) {
+      console.warn("widgetToolsPanel or editable element is found");
+      return;
+    }
+
+    const widgetToolsPanel = getWidgetToolsPanel();
+    if (!widgetToolsPanel) {
+      console.warn("widgetToolsPanel is not found");
+      return;
     }
 
     const selection = rangy.getSelection();
-    console.log("selection", selection);
-    highlighter.highlightSelection(composeHighlighterName("celadon"));
+    if (!selection || selection.isCollapsed) {
+      console.warn("selection is not found or is collapsed");
+      return;
+    }
+
+  /**
+   * cache the range
+   */
+  marker.range = selection.getRangeAt(0);
+
+    showWidgetTools(widgetToolsPanel, {
+      ...getMousePosition(event),
+      ...getWidgetToolsPosition(widgetToolsPanel),
+    });
+
+    hideWidgetToolsListener(widgetToolsPanel);
 }
 
 export {}

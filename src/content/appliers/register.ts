@@ -1,6 +1,7 @@
 const classAppliersKeyMaps = new Map<string, string>();
 
-export function registerClassAppliers(rangy: RangyStatic, highlighter, classAppliers): void {
+// @ts-ignore
+export function register(rangy: RangyStatic, highlighter, classAppliers): void {
   const presetClassApplierKeys = Object.keys(classAppliers);
 
   for (let i = 0; i < presetClassApplierKeys.length; i++) {
@@ -22,6 +23,7 @@ export function registerClassAppliers(rangy: RangyStatic, highlighter, classAppl
 
     classAppliersKeyMaps.set(classApplierName, classApplierName);
 
+    // @ts-ignore
     const classApplier = rangy.createClassApplier(classApplierName, target.options || {});
     highlighter.addClassApplier(classApplier);
   }
