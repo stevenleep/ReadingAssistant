@@ -1,16 +1,15 @@
 {
-  "name": "bookmark",
-  "displayName": "bookmark",
-  "version": "0.0.0",
+  "name": "ac-remarks",
+  "displayName": "ac-remarks",
+  "version": "1.0.0",
   "author": "Aldrich",
-  "description": "",
+  "description": "一个阅读即时标注和收藏夹管理插件",
   "type": "module",
-  "license": "MIT",
   "keywords": [
-    "chrome-extension",
+    "remarks",
     "react",
     "vite",
-    "create-chrome-ext"
+    "bookmark manager"
   ],
   "engines": {
     "node": ">=14.18.0"
