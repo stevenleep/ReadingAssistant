@@ -36,7 +36,8 @@ export default defineManifest({
   ],
   permissions: [
     "tabs",
-    "bookmarks"
+    "bookmarks",
+    "storage",
   ],
   chrome_url_overrides: {
     newtab: 'newtab.html',

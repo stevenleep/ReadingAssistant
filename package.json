@@ -1,15 +1,20 @@
 {
   "name": "ac-remarks",
-  "displayName": "ac-remarks",
+  "displayName": "即时标注",
   "version": "1.0.0",
   "author": "Aldrich",
-  "description": "一个阅读即时标注和收藏夹管理插件",
+  "description": "一款专注于阅读场景的即时标注工具。我们认为阅读的价值是由作者与读者共同完成的，与作者任何时刻产生的灵感、问题、冲突都值得被记录，值得持续回顾。",
   "type": "module",
   "keywords": [
-    "remarks",
-    "react",
-    "vite",
-    "bookmark manager"
+    "即时标注",
+    "深度阅读",
+    "知识回顾",
+    "问题总结",
+    "划词标注",
+    "网页标注",
+    "网页划词",
+    "划词高亮",
+    "总结"
   ],
   "engines": {
     "node": ">=14.18.0"

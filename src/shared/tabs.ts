@@ -18,3 +18,11 @@ export function getTabById(tabId: number): Promise<chrome.tabs.Tab> {
 export function isNewTab(tab: chrome.tabs.Tab): boolean {
   return tab.url === 'chrome://newtab/'
 }
+
+export function createTab(url: string, active: boolean = true): Promise<chrome.tabs.Tab> {
+  return chrome.tabs.create({ url, active });
+}
+
+export function updateTab(tabId: number, updateProperties: chrome.tabs.UpdateProperties): Promise<chrome.tabs.Tab> {
+  return chrome.tabs.update(tabId, updateProperties);
+}
