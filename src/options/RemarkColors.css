@@ -1,0 +1,30 @@
+.remark-colors {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 24px 12px;
+    padding: 0;
+}
+
+.remark-colors .remark-color-item {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 4px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.create-color-btn {
+    background: none;
+    color: #1e88e5;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 8px 12px;
+    border: 1px solid #1e88e5;
+    transition: background 500ms ease-in-out;
+}
+
+.create-color-btn:hover {
+    cursor: pointer;
+}

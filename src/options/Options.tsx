@@ -1,18 +1,18 @@
 import { useState } from 'react'
+import {
+  RemarkConfigContextProvider,
+  defaultRemarkConfig,
+} from './RemarkConfigContext'
+import RemarkOptions from './RemarkOptions'
 import './Options.css'
 
 function App() {
-  const [crx, setCrx] = useState('create-chrome-ext')
-
+  const [values, updateValues] = useState(defaultRemarkConfig);
   return (
     <main>
-      <h3>Options Page!</h3>
-
-      <h6>v 0.0.0</h6>
-
-      <a href="https://www.npmjs.com/package/create-chrome-ext" target="_blank">
-        Power by {crx}
-      </a>
+      <RemarkConfigContextProvider value={[values, updateValues]}>
+        <RemarkOptions />
+      </RemarkConfigContextProvider>
     </main>
   )
 }
