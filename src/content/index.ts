@@ -38,19 +38,19 @@ function mark(event: MouseEvent) {
      * 如果是widgetToolsPanel 或可编辑的元素，不做处理
      */
     if(containsWidgetTools(target) || isEditableElement(target)) {
-      console.warn("widgetToolsPanel or editable element is found");
+      console.info("widgetToolsPanel or editable element is found");
       return;
     }
 
     const widgetToolsPanel = getWidgetToolsPanel();
     if (!widgetToolsPanel) {
-      console.warn("widgetToolsPanel is not found");
+      console.info("widgetToolsPanel is not found");
       return;
     }
 
     const selection = rangy.getSelection();
     if (!selection || selection.isCollapsed) {
-      console.warn("selection is not found or is collapsed");
+      console.info("selection is not found or is collapsed");
       return;
     }
 

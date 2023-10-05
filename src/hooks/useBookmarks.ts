@@ -70,5 +70,6 @@ export function useBookmarks() {
         remove,
         getBookmarksTree,
         open,
+        refresh: getAllAndUpdateUI,
     };
 }

@@ -4,7 +4,7 @@ import RenderBookmark from "./components/RenderBookmark";
 function App() {
   return (
     <main>
-        <RenderBookmark />
+      <RenderBookmark />
     </main>
   )
 }
